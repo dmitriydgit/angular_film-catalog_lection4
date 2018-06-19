@@ -1,0 +1,30 @@
+<mat-card class="menu-card">
+
+	<mat-toolbar class="menu-toolbar">
+		<mat-toolbar-row>
+			<span>В избранное добавлено: {{favCount}}</span>
+			<span class="example-spacer"></span>
+			<div>
+				<mat-form-field>
+					<mat-select placeholder="Сортировка" [(value)]="sortingMethod" (selectionChange)="sortItems(sortingMethod)">
+						<mat-option value="1">По алфавиту: A-Z</mat-option>
+						<mat-option value="-1">По алфавиту: Z-A </mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+</mat-card>
+
+
+
+<mat-grid-list cols="3" rowHeight="1000px">
+	<mat-grid-tile *ngFor="let film of films">
+
+		<app-film-item [filmItem]="film" (add)="setFavFilms($event)"> </app-film-item>
+		<!-- магия! как это работает? -->
+
+
+	</mat-grid-tile>
+</mat-grid-list>
