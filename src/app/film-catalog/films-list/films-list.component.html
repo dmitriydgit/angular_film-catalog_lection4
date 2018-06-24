@@ -1,30 +1,47 @@
-<mat-card class="menu-card">
+<mat-toolbar class="menu-toolbar">
+	<mat-toolbar-row>
+		<span class="example-spacer"></span>
+	</mat-toolbar-row>
 
-	<mat-toolbar class="menu-toolbar">
-		<mat-toolbar-row>
-			<span>В избранное добавлено: {{favCount}}</span>
-			<span class="example-spacer"></span>
-			<div>
-				<mat-form-field>
-					<mat-select placeholder="Сортировка" [(value)]="sortingMethod" (selectionChange)="sortItems(sortingMethod)">
-						<mat-option value="1">По алфавиту: A-Z</mat-option>
-						<mat-option value="-1">По алфавиту: Z-A </mat-option>
-					</mat-select>
-				</mat-form-field>
-			</div>
-		</mat-toolbar-row>
-	</mat-toolbar>
+	<mat-toolbar-row>
+		<span>В избранное добавлено: {{favCount}}</span>
+		<span class="example-spacer"></span>
 
-</mat-card>
+		<div>
+			<app-search (searchEmitter)="doSearch($event)"></app-search>
+		</div>
 
+		<span class="example-spacer"></span>
 
+		<div>
+			<mat-form-field class="sortingField">
+				<mat-select placeholder="Сортировка" [(ngModel)]="direct" (selectionChange)="sortItems()">
+					<mat-option value="0">По умолчанию</mat-option>
+					<mat-option value="1">По алфавиту: A-Z</mat-option>
+					<mat-option value="-1">По алфавиту: Z-A </mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+	</mat-toolbar-row>
 
-<mat-grid-list cols="3" rowHeight="1000px">
-	<mat-grid-tile *ngFor="let film of films">
+	<mat-toolbar-row>
+		<span class="example-spacer"></span>
+	</mat-toolbar-row>
+</mat-toolbar>
 
+<mat-grid-list cols="3" rowHeight="1000px" *ngIf="displayedFilms.length>0; else noFilmsBlock">
+	<mat-grid-tile *ngFor="let film of displayedFilms">
 		<app-film-item [filmItem]="film" (add)="setFavFilms($event)"> </app-film-item>
 		<!-- магия! как это работает? -->
-
-
 	</mat-grid-tile>
 </mat-grid-list>
+
+<ng-template #noFilmsBlock>
+	<div class="noFilmsBlock">
+		<h2> Нет фильмов для отображения </h2>
+	</div>
+</ng-template>
+
+<div class="button-align-center" *ngIf="!searching">
+	<button mat-flat-button (click)="getFIlms()" [disabled]="counter > allPages">Click me!</button>
+</div>

@@ -1,9 +1,10 @@
 <mat-card class="example-card film-card">
 	<img mat-card-image src="{{film.imgUrl}}" alt="{{film.name}}">
 	<mat-card-content>
-		<h2>{{film.name}}</h2>
+		<h2>{{film.name }} </h2>
 		<p class='year'>{{film.year}}</p>
-		<p>{{film.description }}</p>
+		<!-- ограничил вывод описания до 250 символов-->
+		<p>{{film.description | slice:0:250 }}</p>
 	</mat-card-content>
 	<mat-card-actions>
 		<button class="btn-favorites" mat-button (click)="addToFavorite()">Добавить в избранное</button>

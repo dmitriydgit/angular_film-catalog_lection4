@@ -13,3 +13,24 @@ background-color: white;
 .example-spacer {
 flex: 1 1 auto;
 }
+
+.noFilmsBlock{
+	text-align: center;
+	margin: 50px;
+	border: 2px solid #999999;
+
+}
+
+.button-align-center{
+	text-align: center;
+	margin: 50px 0px;
+}
+
+/* .mat-toolbar-row {
+	margin:0px 50px;
+} */
+.sortingField{
+	width: 250px;
+
+
+}
