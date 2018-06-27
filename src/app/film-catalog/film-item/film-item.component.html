@@ -7,6 +7,7 @@
 		<p>{{film.description | slice:0:250 }}</p>
 	</mat-card-content>
 	<mat-card-actions>
-		<button class="btn-favorites" mat-button (click)="addToFavorite()">Добавить в избранное</button>
+		<button class="btn-favorites" mat-button (click)="addToFavorite()" *ngIf="!film.isFavorite">Добавить в избранное</button>
+		<button class="btn-favorites" mat-button (click)="addToFavorite()" *ngIf="film.isFavorite">В избранном</button>
 	</mat-card-actions>
 </mat-card>

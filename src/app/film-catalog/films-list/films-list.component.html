@@ -43,5 +43,11 @@
 </ng-template>
 
 <div class="button-align-center" *ngIf="!searching">
-	<button mat-flat-button (click)="getFIlms()" [disabled]="counter > allPages">Click me!</button>
+	<button mat-flat-button (click)="getFIlms()" (click)="toggleBorder()" [disabled]="counter > allPages" [ngClass]="{
+			'red-border': isBorder,
+			'no-border' : !isBorder
+	}">Click me!</button>
 </div>
+
+<!-- class="red-border"
+	 [class.no-border]="isBorder" -->

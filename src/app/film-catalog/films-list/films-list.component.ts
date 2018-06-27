@@ -20,6 +20,7 @@ export class FilmsListComponent implements OnInit {
 	allPages: number;
 	counter = 0;
 	displayedFilms: Film[] = [];
+	isBorder: boolean = true;
 
 
 	constructor(public filmsService: FilmService) { }
@@ -70,6 +71,10 @@ export class FilmsListComponent implements OnInit {
 			this.searching = false;
 			this.displayedFilms = [...this.searchArray];
 		}
+	}
+
+	toggleBorder() {
+		this.isBorder = !this.isBorder;
 	}
 
 }
